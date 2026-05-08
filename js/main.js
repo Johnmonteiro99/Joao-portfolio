@@ -3,6 +3,8 @@ const navSections = Array.from(navLinks)
     .map((link) => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
 const root = document.documentElement;
+const themeToggle = document.querySelector('.theme-toggle');
+const lightPulse = document.querySelector('.light-pulse');
 
 const setActiveNavLink = (sectionId) => {
     navLinks.forEach((link) => {
@@ -58,6 +60,20 @@ if (navSections.length) {
 
     window.addEventListener('scroll', updateActiveNavOnScroll, { passive: true });
     window.addEventListener('resize', updateActiveNavOnScroll);
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isActive = document.body.classList.toggle('cosmic-active');
+
+        themeToggle.setAttribute('aria-pressed', String(isActive));
+
+        if (lightPulse) {
+            lightPulse.classList.remove('is-pulsing');
+            void lightPulse.offsetWidth;
+            lightPulse.classList.add('is-pulsing');
+        }
+    });
 }
 
 const aboutImageCard = document.querySelector('.about-image-card');

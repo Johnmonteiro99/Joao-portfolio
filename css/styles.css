@@ -103,6 +103,101 @@ body::after {
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 74%, transparent 100%);
 }
 
+.sky-stars::before,
+.sky-stars::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition: opacity 0.7s ease;
+}
+
+.sky-stars::before {
+
+    background:
+        linear-gradient(32deg, transparent 9%, rgba(191, 219, 254, 0.22) 9.2%, transparent 9.7%),
+        linear-gradient(142deg, transparent 23%, rgba(94, 234, 212, 0.16) 23.2%, transparent 23.7%),
+        linear-gradient(68deg, transparent 52%, rgba(219, 234, 254, 0.18) 52.2%, transparent 52.7%),
+        radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.72) 0 1px, transparent 2px),
+        radial-gradient(circle at 31% 38%, rgba(147, 197, 253, 0.58) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.64) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 34%, rgba(94, 234, 212, 0.48) 0 1px, transparent 2px);
+
+    background-size:
+        280px 220px,
+        360px 260px,
+        420px 300px,
+        280px 220px,
+        280px 220px,
+        360px 260px,
+        360px 260px;
+
+    animation: constellationDrift 12s ease-in-out infinite alternate;
+}
+
+.sky-stars::after {
+
+    background:
+        radial-gradient(circle at 22% 18%, rgba(94, 234, 212, 0.16), transparent 28%),
+        radial-gradient(circle at 78% 32%, rgba(147, 197, 253, 0.14), transparent 30%),
+        radial-gradient(circle at 48% 74%, rgba(255, 244, 214, 0.1), transparent 34%);
+
+    filter: blur(18px);
+}
+
+body.cosmic-active .sky-stars {
+
+    opacity: 0.92;
+
+    filter:
+        saturate(1.18)
+        drop-shadow(0 0 8px rgba(191, 219, 254, 0.18));
+}
+
+body.cosmic-active .sky-stars::before {
+
+    opacity: 0.46;
+}
+
+body.cosmic-active .sky-stars::after {
+
+    opacity: 0.74;
+}
+
+.light-pulse {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 998;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        radial-gradient(circle at 50% 28%,
+            rgba(255, 255, 255, 0.22) 0%,
+            rgba(94, 234, 212, 0.16) 12%,
+            rgba(147, 197, 253, 0.08) 28%,
+            transparent 56%);
+
+    transform: scale(0.42);
+}
+
+.light-pulse.is-pulsing {
+
+    animation: lightPulse 0.86s ease-out;
+}
+
 @keyframes starTwinkle {
 
     from {
@@ -113,6 +208,41 @@ body::after {
     to {
 
         opacity: 0.62;
+    }
+}
+
+@keyframes constellationDrift {
+
+    from {
+
+        transform: translate3d(-8px, -5px, 0);
+    }
+
+    to {
+
+        transform: translate3d(10px, 8px, 0);
+    }
+}
+
+@keyframes lightPulse {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0.32);
+    }
+
+    35% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform: scale(1.38);
     }
 }
 
@@ -309,6 +439,13 @@ nav {
     transform: translateY(-2px);
 }
 
+body.cosmic-active .theme-toggle {
+
+    color: var(--accent-light);
+
+    transform: translateY(-1px) rotate(-8deg);
+}
+
 .theme-toggle svg {
 
     width: 1.6rem;
@@ -324,6 +461,13 @@ nav {
     filter: drop-shadow(0 0 7px rgba(94, 234, 212, 0.22));
 }
 
+body.cosmic-active .theme-toggle svg {
+
+    filter:
+        drop-shadow(0 0 9px rgba(94, 234, 212, 0.48))
+        drop-shadow(0 0 18px rgba(147, 197, 253, 0.28));
+}
+
 /* ========================================
    SECTIONS
 ======================================== */
@@ -337,6 +481,36 @@ section {
     min-height: auto;
 
     padding: clamp(92px, 10vw, 132px) 10%;
+}
+
+section::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: clamp(1rem, 4vw, 3rem) 4%;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        radial-gradient(ellipse at calc(50% + var(--glow-shift-x, 0px)) calc(46% + var(--glow-shift-y, 0px)),
+            rgba(94, 234, 212, 0.1) 0%,
+            rgba(147, 197, 253, 0.075) 36%,
+            transparent 68%);
+
+    filter: blur(26px);
+
+    transition: opacity 0.75s ease;
+}
+
+body.cosmic-active section::after {
+
+    opacity: 1;
 }
 
 .hero {
@@ -1176,21 +1350,44 @@ section {
 
 @media (max-width: 640px) {
 
+    body::before {
+
+        content: "";
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        height: 5.5rem;
+
+        z-index: 1;
+
+        pointer-events: none;
+
+        background:
+            linear-gradient(to bottom,
+                rgba(255, 255, 255, 0.14) 0%,
+                rgba(255, 255, 255, 0.055) 48%,
+                transparent 100%);
+    }
+
     nav {
 
-        width: calc(100% - 1.5rem);
+        width: calc(100% - 1rem);
 
         top: 1rem;
     }
 
     .nav-pill {
 
-        justify-content: center;
-        gap: 0.85rem;
+        justify-content: space-between;
+        gap: 1rem;
 
         width: 100%;
 
-        padding: 0.85rem 1rem;
+        padding: 0.85rem 0.9rem;
     }
 
     .nav-pill a {
@@ -1247,23 +1444,37 @@ section {
 
     .about-layout {
 
-        gap: 2.5rem;
+        gap: 3.15rem;
     }
 
     .about-text-card {
 
-        padding-left: 0.5rem;
-        padding-right: 0;
+        padding-left: 0.9rem;
+        padding-right: 0.25rem;
+    }
+
+    .about-text-card::before {
+
+        left: 0;
+        top: 0.85rem;
+        bottom: 0.85rem;
     }
 
     .about-text-card p {
 
-        padding-left: 1rem;
+        padding-left: 1.15rem;
     }
 
     .about-text-card br {
 
         display: none;
+    }
+
+    .about-image-card {
+
+        width: min(100%, 340px);
+
+        justify-self: center;
     }
 
     .projects {
@@ -1301,9 +1512,9 @@ section {
 
     .nav-pill {
 
-        gap: 0.62rem;
+        gap: 0.8rem;
 
-        padding: 0.75rem 0.7rem;
+        padding: 0.75rem 0.55rem;
     }
 
     .nav-pill a {
