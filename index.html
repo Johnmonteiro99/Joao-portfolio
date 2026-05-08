@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>João | Portfolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- TOP SKY STARS -->
+    <div class="sky-stars"></div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-pill">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <button class="theme-toggle" type="button" aria-label="Change page lighting">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.5"></circle>
+                    <path d="M3.5 14.5c2.7 2.1 7.4 2.7 12.1 1.4s8.1-4.2 7.6-6.5c-.3-1.3-1.8-2-4-2.1"></path>
+                    <path d="M20.5 9.5c-2.7-2.1-7.4-2.7-12.1-1.4S.3 12.3.8 14.6c.3 1.3 1.8 2 4 2.1"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <h1>Hi, I'm <span class="name-gradient">João</span> <span class="name-dash">-</span></h1>
+
+        <p>
+            Exploring creativity, design, and technology
+            through immersive digital experiences.
+        </p>
+
+        <p class="hero-tagline">
+            Frontend Developer • Creative Thinker • UI Explorer
+        </p>
+
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Scroll</span>
+            <span class="scroll-line"></span>
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+
+        <h2 class="section-title">
+            About Me
+        </h2>
+
+        <div class="about-layout">
+            <article class="about-card about-text-card">
+                <div class="about-thought">
+                    <p>
+                        I’ve always been drawn to <span>the unknown</span>.
+                    </p>
+
+                    <p>
+                        Whether through technology, design,<br>
+                        or the quiet mystery of the night sky.
+                    </p>
+                </div>
+
+                <div class="about-thought">
+                    <p>
+                        For me, development is more than writing code.
+                    </p>
+
+                    <p>
+                        It’s a <span>creative process rooted in curiosity</span>, exploration,
+                        and the desire to build experiences that feel meaningful and human.
+                    </p>
+                </div>
+
+                <div class="about-thought">
+                    <p>
+                        I enjoy creating immersive digital spaces where thoughtful design,
+                        interaction, and emotion can exist together.
+                    </p>
+
+                    <p>
+                        I’m constantly inspired by the
+                        <span>connection between technology and imagination</span>.
+                    </p>
+                </div>
+
+                <div class="about-thought">
+                    <p>
+                        Outside of development, I spend time reflecting, learning, and exploring
+                        the deeper questions that shape how we experience the world.
+                    </p>
+
+                    <p>
+                        That mindset carries into the way I design and build — with
+                        <span>intention, curiosity, and attention to detail</span>.
+                    </p>
+                </div>
+            </article>
+
+            <figure class="about-card about-image-card">
+                <button class="image-flip-card" type="button" aria-label="Reveal a note about exploration"
+                    aria-pressed="false">
+                    <span class="image-flip-inner">
+                        <span class="image-flip-face image-flip-front">
+                            <img src="assets/images/gazing_with_kitten.png" alt="Gazing with kitten">
+                            <span class="reveal-hint" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 3l1.4 5.1L18.5 7 15 11l3.5 4-5.1-1.1L12 19l-1.4-5.1L5.5 15 9 11 5.5 7l5.1 1.1L12 3z"></path>
+                                    <path d="M4 20l5-5"></path>
+                                    <path d="M15 9l5-5"></path>
+                                </svg>
+                            </span>
+                        </span>
+
+                        <span class="image-flip-face image-flip-back">
+                            <span class="handwritten-note">
+                                The stars always reminded me how much there is to explore —
+                                in technology, creativity, and life itself.
+                            </span>
+                        </span>
+                    </span>
+                </button>
+            </figure>
+        </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+
+        <h2 class="section-title">
+            Projects
+        </h2>
+
+        <div class="projects-grid">
+            <article class="project-card">
+                <div class="project-orb" aria-hidden="true"></div>
+
+                <p class="project-label">
+                    Completed Project
+                </p>
+
+                <h3>
+                    Pawsitive
+                </h3>
+
+                <p>
+                    A warm and welcoming web experience created for a local pet sitter,
+                    focused on approachable design, responsive development, and building
+                    trust through thoughtful presentation.
+                </p>
+
+                <a href="https://johnmonteiro99.github.io/pawsitive/" target="_blank" rel="noopener noreferrer">
+                    View Live Site
+                </a>
+            </article>
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+
+        <h2 class="section-title">
+            Contact
+        </h2>
+
+        <div class="contact-panel">
+            <p>
+                Curiosity has always guided me toward meaningful ideas,
+                creative exploration, and genuine human connection.
+            </p>
+
+            <p>
+                If you'd like to connect, collaborate,
+                or simply share thoughts about technology and creativity,
+                I’d be happy to hear from you.
+            </p>
+
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/joaomonteiro99/" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-13h4v1.5A4.8 4.8 0 0 1 16 8z"></path>
+                        <path d="M2 9h4v12H2z"></path>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+
+                <a href="https://github.com/Johnmonteiro99" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.9 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2V22c0 .4.2.7.8.6A11.2 11.2 0 0 0 12 .8z"></path>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <figure class="sailing-scene" aria-hidden="true">
+            <img src="assets/images/sailing.png" alt="">
+        </figure>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            Designed & developed by João Monteiro
+        </p>
+
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+
+</body>
+
+</html>
