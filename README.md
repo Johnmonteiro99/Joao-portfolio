@@ -54,7 +54,7 @@ Every section was intentionally designed to feel calm, atmospheric, and human-ce
 
 ## 🚀 Live Website
 
-https://johnmonteiro99.github.io/Joao-portfolio/
+https://www.zayverse.dev
 
 ---
 
