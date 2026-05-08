@@ -1,5 +1,22 @@
 const navLinks = document.querySelectorAll('.nav-pill a');
+const navSections = Array.from(navLinks)
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
 const root = document.documentElement;
+
+const setActiveNavLink = (sectionId) => {
+    navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${sectionId}`;
+
+        link.classList.toggle('nav-clicked', isActive);
+
+        if (isActive) {
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
+        }
+    });
+};
 
 window.addEventListener('pointermove', (event) => {
     const x = (event.clientX / window.innerWidth) - 0.5;
@@ -13,11 +30,35 @@ window.addEventListener('pointermove', (event) => {
 
 navLinks.forEach((link) => {
     link.addEventListener('click', () => {
-        navLinks.forEach((item) => item.classList.remove('nav-clicked'));
-        link.classList.add('nav-clicked');
+        const sectionId = link.getAttribute('href').replace('#', '');
+
+        setActiveNavLink(sectionId);
     });
 
 });
+
+const updateActiveNavOnScroll = () => {
+    const navOffset = document.querySelector('nav')?.offsetHeight || 0;
+    const scrollTarget = window.scrollY + navOffset + (window.innerHeight * 0.35);
+    let currentSection = navSections[0];
+
+    navSections.forEach((section) => {
+        if (section.offsetTop <= scrollTarget) {
+            currentSection = section;
+        }
+    });
+
+    if (currentSection) {
+        setActiveNavLink(currentSection.id);
+    }
+};
+
+if (navSections.length) {
+    updateActiveNavOnScroll();
+
+    window.addEventListener('scroll', updateActiveNavOnScroll, { passive: true });
+    window.addEventListener('resize', updateActiveNavOnScroll);
+}
 
 const aboutImageCard = document.querySelector('.about-image-card');
 const imageFlipButton = document.querySelector('.image-flip-card');
