@@ -62,6 +62,28 @@ if (navSections.length) {
     window.addEventListener('resize', updateActiveNavOnScroll);
 }
 
+const revealItems = document.querySelectorAll('.reveal, .reveal-soft');
+
+if (revealItems.length) {
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '0px 0px -12% 0px',
+            threshold: 0.16
+        });
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+        revealItems.forEach((item) => item.classList.add('visible'));
+    }
+}
+
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         const isActive = document.body.classList.toggle('cosmic-active');
@@ -98,21 +120,5 @@ if (aboutImageCard && imageFlipButton) {
         aboutImageCard.style.setProperty('--tilt-y', '0deg');
         aboutImageCard.style.setProperty('--glow-x', '50%');
         aboutImageCard.style.setProperty('--glow-y', '50%');
-    });
-
-    imageFlipButton.addEventListener('click', () => {
-        aboutImageCard.classList.remove('is-flipping');
-        void aboutImageCard.offsetWidth;
-        aboutImageCard.classList.add('is-flipping');
-
-        const isFlipped = aboutImageCard.classList.toggle('is-flipped');
-
-        imageFlipButton.setAttribute('aria-pressed', String(isFlipped));
-    });
-
-    imageFlipButton.addEventListener('animationend', (event) => {
-        if (event.animationName === 'flipWeight') {
-            aboutImageCard.classList.remove('is-flipping');
-        }
     });
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,18 +46,18 @@
     <!-- HERO -->
     <section class="hero" id="home">
 
-        <h1>Hi, I'm <span class="name-gradient">João</span> <span class="name-dash">-</span></h1>
+        <h1 class="reveal">Hi, I'm <span class="name-gradient">João</span> <span class="name-dash">-</span></h1>
 
-        <p>
+        <p class="reveal delay-1">
             Exploring creativity, design, and technology
             through immersive digital experiences.
         </p>
 
-        <p class="hero-tagline">
+        <p class="hero-tagline reveal delay-2">
             Frontend Developer • Creative Thinker • UI Explorer
         </p>
 
-        <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-indicator reveal delay-3" aria-hidden="true">
             <span>Scroll</span>
             <span class="scroll-line"></span>
         </div>
@@ -67,82 +67,47 @@
     <!-- ABOUT -->
     <section id="about" class="about">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             About Me
         </h2>
 
         <div class="about-layout">
             <article class="about-card about-text-card">
-                <div class="about-thought">
-                    <p>
-                        I’ve always been drawn to <span>the unknown</span>.
-                    </p>
+                <p class="about-label reveal delay-1">
+                    Creative Developer • Front-End Design
+                </p>
 
-                    <p>
-                        Whether through technology, design,<br>
-                        or the quiet mystery of the night sky.
-                    </p>
-                </div>
+                <div class="about-copy">
+                    <article class="about-thought-card reveal delay-2" style="--i: 1">
+                        <p>
+                            I’ve always been drawn to the intersection of
+                            <span>technology</span>, <span>creativity</span>, and the
+                            <span>unknown</span>.
+                        </p>
+                    </article>
 
-                <div class="about-thought">
-                    <p>
-                        For me, development is more than writing code.
-                    </p>
+                    <article class="about-thought-card reveal delay-3" style="--i: 2">
+                        <p>
+                            For me, development is more than writing code. It’s about creating
+                            digital spaces that spark <span>curiosity</span>,
+                            <span>emotion</span>, and <span>connection</span>.
+                        </p>
+                    </article>
 
-                    <p>
-                        It’s a <span>creative process rooted in curiosity</span>, exploration,
-                        and the desire to build experiences that feel meaningful and human.
-                    </p>
-                </div>
-
-                <div class="about-thought">
-                    <p>
-                        I enjoy creating immersive digital spaces where thoughtful design,
-                        interaction, and emotion can exist together.
-                    </p>
-
-                    <p>
-                        I’m constantly inspired by the
-                        <span>connection between technology and imagination</span>.
-                    </p>
-                </div>
-
-                <div class="about-thought">
-                    <p>
-                        Outside of development, I spend time reflecting, learning, and exploring
-                        the deeper questions that shape how we experience the world.
-                    </p>
-
-                    <p>
-                        That mindset carries into the way I design and build — with
-                        <span>intention, curiosity, and attention to detail</span>.
-                    </p>
+                    <article class="about-thought-card reveal delay-4" style="--i: 3">
+                        <p>
+                            Outside of tech, I spend time exploring ideas around art, culture,
+                            and the deeper questions that shape how we experience the world.
+                        </p>
+                    </article>
                 </div>
             </article>
 
-            <figure class="about-card about-image-card">
-                <button class="image-flip-card" type="button" aria-label="Reveal a note about exploration"
-                    aria-pressed="false">
-                    <span class="image-flip-inner">
-                        <span class="image-flip-face image-flip-front">
-                            <img src="assets/images/gazing_with_kitten.png" alt="Gazing with kitten">
-                            <span class="reveal-hint" aria-hidden="true">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M12 3l1.4 5.1L18.5 7 15 11l3.5 4-5.1-1.1L12 19l-1.4-5.1L5.5 15 9 11 5.5 7l5.1 1.1L12 3z"></path>
-                                    <path d="M4 20l5-5"></path>
-                                    <path d="M15 9l5-5"></path>
-                                </svg>
-                            </span>
-                        </span>
-
-                        <span class="image-flip-face image-flip-back">
-                            <span class="handwritten-note">
-                                The stars always reminded me how much there is to explore —
-                                in technology, creativity, and life itself.
-                            </span>
-                        </span>
-                    </span>
-                </button>
+            <figure class="about-card about-image-card reveal-soft delay-4">
+                <div class="image-flip-card">
+                    <!-- Previous About image: <img src="assets/images/gazing_with_kitten.png" alt="Gazing with kitten"> -->
+                    <img src="assets/images/astro-boy-zay.png" alt="Astro boy Zay">
+                </div>
             </figure>
         </div>
 
@@ -151,16 +116,16 @@
     <!-- PROJECTS -->
     <section id="projects" class="projects">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Projects
         </h2>
 
         <div class="projects-grid">
-            <article class="project-card">
+            <article class="project-card reveal delay-1">
                 <div class="project-orb" aria-hidden="true"></div>
 
                 <p class="project-label">
-                    Completed Project
+                    Client Project
                 </p>
 
                 <h3>
@@ -184,24 +149,24 @@
     <!-- CONTACT -->
     <section id="contact" class="contact">
 
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
             Contact
         </h2>
 
         <div class="contact-panel">
-            <p>
+            <p class="reveal delay-1">
                 Curiosity has always guided me toward meaningful ideas,
                 creative exploration, and genuine human connection.
             </p>
 
-            <p>
+            <p class="reveal delay-2">
                 If you'd like to connect, collaborate,
                 or simply share thoughts about technology and creativity,
                 I’d be happy to hear from you.
             </p>
 
             <div class="contact-links">
-                <a href="https://www.linkedin.com/in/joaomonteiro99/" target="_blank" rel="noopener noreferrer">
+                <a class="reveal delay-3" href="https://www.linkedin.com/in/joaomonteiro99/" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-13h4v1.5A4.8 4.8 0 0 1 16 8z"></path>
                         <path d="M2 9h4v12H2z"></path>
@@ -210,7 +175,7 @@
                     LinkedIn
                 </a>
 
-                <a href="https://github.com/Johnmonteiro99" target="_blank" rel="noopener noreferrer">
+                <a class="reveal delay-4" href="https://github.com/Johnmonteiro99" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.9 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2V22c0 .4.2.7.8.6A11.2 11.2 0 0 0 12 .8z"></path>
                     </svg>
@@ -219,7 +184,7 @@
             </div>
         </div>
 
-        <figure class="sailing-scene" aria-hidden="true">
+        <figure class="sailing-scene reveal-soft delay-4" aria-hidden="true">
             <img src="assets/images/sailing.png" alt="">
         </figure>
 
