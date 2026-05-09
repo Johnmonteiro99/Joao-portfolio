@@ -288,15 +288,16 @@ nav {
 
     border-radius: 999px;
 
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.075);
 
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(18px);
 
-    border: 1px solid rgba(255, 226, 180, 0.16);
+    border: 1px solid rgba(255, 226, 180, 0.24);
 
     box-shadow:
-        inset -1px 1px 0 rgba(255, 241, 210, 0.22),
-        0 0 18px rgba(255, 198, 109, 0.08);
+        inset -1px 1px 0 rgba(255, 241, 210, 0.3),
+        0 0 24px rgba(255, 198, 109, 0.12),
+        0 18px 42px rgba(0, 0, 0, 0.18);
 
     overflow: hidden;
 }
@@ -907,70 +908,6 @@ body.cosmic-active section::after {
     max-width: 36rem;
 }
 
-.reveal,
-.reveal-soft {
-
-    --reveal-delay: 0s;
-
-    opacity: 0;
-
-    transform: translateY(24px);
-
-    filter: blur(8px);
-
-    transition:
-        opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 0.95s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--reveal-delay);
-    will-change: opacity, transform, filter;
-}
-
-.reveal-soft {
-
-    transform: translateY(20px) scale(0.98);
-}
-
-.reveal.visible,
-.reveal-soft.visible {
-
-    opacity: 1;
-
-    transform: translateY(0);
-
-    filter: blur(0);
-}
-
-.delay-1 {
-
-    --reveal-delay: 0.12s;
-}
-
-.delay-2 {
-
-    --reveal-delay: 0.24s;
-}
-
-.delay-3 {
-
-    --reveal-delay: 0.36s;
-}
-
-.delay-4 {
-
-    --reveal-delay: 0.48s;
-}
-
-.scroll-indicator.reveal {
-
-    transform: translate(-50%, 24px);
-}
-
-.scroll-indicator.reveal.visible {
-
-    transform: translate(-50%, 0);
-}
-
 .about-thought-card {
 
     --card-x: 0rem;
@@ -986,38 +923,35 @@ body.cosmic-active section::after {
 
     background:
         linear-gradient(135deg,
-            rgba(255, 255, 255, 0.045),
-            rgba(255, 255, 255, 0.012) 54%,
-            rgba(147, 197, 253, 0.025) 100%),
-        rgba(6, 14, 27, 0.18);
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.028) 54%,
+            rgba(147, 197, 253, 0.055) 100%),
+        rgba(6, 14, 27, 0.28);
 
     box-shadow:
-        0 18px 42px rgba(0, 0, 0, 0.14),
-        0 0 24px rgba(147, 197, 253, 0.035);
+        inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+        inset -1px -1px 0 rgba(94, 234, 212, 0.055),
+        0 20px 46px rgba(0, 0, 0, 0.18),
+        0 0 34px rgba(147, 197, 253, 0.07);
 
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
 
+    transform: translateX(var(--card-x));
 }
 
-.about-thought-card:nth-child(1),
-.about-thought-card:nth-child(3) {
+.about-thought-card:nth-child(1) {
 
     --card-x: clamp(-1.3rem, -2vw, -0.45rem);
 }
 
 .about-thought-card:nth-child(2) {
 
-    --card-x: clamp(1rem, 3vw, 2.35rem);
+    --card-x: clamp(1.35rem, 3.2vw, 2.6rem);
 }
 
-.about-thought-card.reveal {
+.about-thought-card:nth-child(3) {
 
-    transform: translate3d(var(--card-x), 24px, 0);
-}
-
-.about-thought-card.reveal.visible {
-
-    transform: translate3d(var(--card-x), 0, 0);
+    --card-x: clamp(0.45rem, 1.4vw, 1.1rem);
 }
 
 .about-thought-card p {
@@ -1065,16 +999,6 @@ body.cosmic-active section::after {
     box-shadow: none;
 
     transform: translate(1.5rem, 0.5rem);
-}
-
-.about-image-card.reveal-soft {
-
-    transform: translate(1.5rem, calc(0.5rem + 20px)) scale(0.98);
-}
-
-.about-image-card.reveal-soft.visible {
-
-    transform: translate(1.5rem, 0.5rem) scale(1);
 }
 
 .image-flip-card {
@@ -1153,44 +1077,6 @@ body.cosmic-active section::after {
         animation: none;
     }
 
-    .reveal,
-    .reveal-soft {
-
-        opacity: 1;
-
-        filter: none;
-
-        transform: none;
-
-        transition: none;
-    }
-
-    .scroll-indicator.reveal {
-
-        transform: translateX(-50%);
-    }
-
-    .about-thought-card.reveal {
-
-        transform: translate3d(var(--card-x), 0, 0);
-    }
-
-    .about-image-card.reveal-soft {
-
-        transform: translate(1.5rem, 0.5rem);
-    }
-
-    .project-card.reveal,
-    .contact-links a.reveal {
-
-        transform: translateY(0);
-    }
-
-    .sailing-scene.reveal-soft {
-
-        transform: translate(8%, 2.5rem);
-    }
-
     .image-flip-card {
 
         transition: none;
@@ -1221,16 +1107,6 @@ body.cosmic-active section::after {
         min-height: 340px;
 
         justify-self: center;
-
-        transform: none;
-    }
-
-    .about-image-card.reveal-soft {
-
-        transform: translateY(20px) scale(0.98);
-    }
-
-    .about-image-card.reveal-soft.visible {
 
         transform: none;
     }
@@ -1399,15 +1275,6 @@ body.cosmic-active section::after {
         transform: translate(8%, 1.75rem);
     }
 
-    .sailing-scene.reveal-soft {
-
-        transform: translate(8%, calc(1.75rem + 20px)) scale(0.98);
-    }
-
-    .sailing-scene.reveal-soft.visible {
-
-        transform: translate(8%, 1.75rem) scale(1);
-    }
 }
 
 @media (max-width: 420px) {
@@ -1488,7 +1355,7 @@ body.cosmic-active section::after {
 
     padding: clamp(1.5rem, 4vw, 2.25rem);
 
-    border: 1px solid rgba(191, 219, 254, 0.12);
+    border: 1px solid rgba(191, 219, 254, 0.18);
     border-radius: 8px;
 
     background:
@@ -1499,9 +1366,9 @@ body.cosmic-active section::after {
             rgba(255, 255, 255, 0.012) 1px,
             transparent 1px),
         linear-gradient(135deg,
-            rgba(255, 255, 255, 0.055),
-            rgba(255, 255, 255, 0.018) 48%,
-            rgba(94, 234, 212, 0.04) 100%);
+            rgba(255, 255, 255, 0.085),
+            rgba(255, 255, 255, 0.032) 48%,
+            rgba(94, 234, 212, 0.065) 100%);
 
     background-size:
         26px 26px,
@@ -1509,13 +1376,13 @@ body.cosmic-active section::after {
         auto;
 
     box-shadow:
-        inset 1px 1px 0 rgba(255, 255, 255, 0.08),
-        inset -1px -1px 0 rgba(94, 234, 212, 0.06),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
+        inset -1px -1px 0 rgba(94, 234, 212, 0.08),
         0 18px 34px rgba(0, 0, 0, 0.22),
         0 38px 90px rgba(0, 0, 0, 0.26),
-        0 0 64px rgba(147, 197, 253, 0.08);
+        0 0 76px rgba(147, 197, 253, 0.12);
 
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
 
     transform: translateY(0);
 
@@ -1581,29 +1448,6 @@ body.cosmic-active section::after {
         0 22px 44px rgba(0, 0, 0, 0.24),
         0 46px 110px rgba(0, 0, 0, 0.3),
         0 0 78px rgba(147, 197, 253, 0.11);
-}
-
-.project-card.reveal {
-
-    transform: translateY(24px);
-
-    transition:
-        opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.45s ease,
-        box-shadow 0.45s ease;
-    transition-delay: var(--reveal-delay);
-}
-
-.project-card.reveal.visible {
-
-    transform: translateY(0);
-}
-
-.project-card.reveal.visible:hover {
-
-    transform: translateY(-8px);
 }
 
 .project-orb {
@@ -1786,21 +1630,21 @@ body.cosmic-active section::after {
 
     background:
         linear-gradient(135deg,
-            rgba(255, 255, 255, 0.075),
-            rgba(255, 255, 255, 0.028) 52%,
-            rgba(94, 234, 212, 0.05) 100%);
+            rgba(255, 255, 255, 0.095),
+            rgba(255, 255, 255, 0.04) 52%,
+            rgba(94, 234, 212, 0.07) 100%);
 
     color: rgba(248, 250, 252, 0.88);
 
     text-decoration: none;
 
     box-shadow:
-        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
-        inset -1px -1px 0 rgba(94, 234, 212, 0.06),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.16),
+        inset -1px -1px 0 rgba(94, 234, 212, 0.08),
         0 18px 42px rgba(0, 0, 0, 0.2),
-        0 0 34px rgba(147, 197, 253, 0.07);
+        0 0 42px rgba(147, 197, 253, 0.11);
 
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(18px);
 
     transition:
         color 0.3s ease,
@@ -1832,30 +1676,6 @@ body.cosmic-active section::after {
         inset -1px -1px 0 rgba(94, 234, 212, 0.1),
         0 22px 52px rgba(0, 0, 0, 0.24),
         0 0 44px rgba(94, 234, 212, 0.18);
-}
-
-.contact-links a.reveal {
-
-    transform: translateY(24px);
-
-    transition:
-        opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-        color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-    transition-delay: var(--reveal-delay);
-}
-
-.contact-links a.reveal.visible {
-
-    transform: translateY(0);
-}
-
-.contact-links a.reveal.visible:hover {
-
-    transform: translateY(-4px);
 }
 
 .sailing-scene {
@@ -1982,18 +1802,6 @@ body.cosmic-active section::after {
     border-radius: 8px;
 }
 
-.sailing-scene.reveal-soft {
-
-    transform: translate(8%, calc(2.5rem + 20px)) scale(0.98);
-}
-
-.sailing-scene.reveal-soft.visible {
-
-    opacity: 0.46;
-
-    transform: translate(8%, 2.5rem) scale(1);
-}
-
 @keyframes distantBoatFloat {
 
     0%,
@@ -2030,69 +1838,13 @@ body.cosmic-active section::after {
         transform: translate(8%, 1.75rem);
     }
 
-    .sailing-scene.reveal-soft {
-
-        transform: translate(8%, calc(1.75rem + 20px)) scale(0.98);
-    }
-
-    .sailing-scene.reveal-soft.visible {
-
-        transform: translate(8%, 1.75rem) scale(1);
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-    .reveal,
-    .reveal-soft,
-    .about-thought-card.reveal,
-    .about-image-card.reveal-soft,
-    .project-card.reveal,
-    .contact-links a.reveal,
-    .sailing-scene.reveal-soft {
+    .image-flip-card,
+    .sailing-scene {
 
-        opacity: 1;
-
-        filter: none;
-
-        transform: none;
-
-        transition: none;
-    }
-
-    .scroll-indicator.reveal {
-
-        transform: translateX(-50%);
-    }
-
-    .about-thought-card.reveal {
-
-        transform: translate3d(var(--card-x), 0, 0);
-    }
-
-    .about-image-card.reveal-soft {
-
-        transform: translate(1.5rem, 0.5rem);
-    }
-
-    .sailing-scene.reveal-soft {
-
-        transform: translate(8%, 2.5rem);
-    }
-}
-
-@media (max-width: 860px) and (prefers-reduced-motion: reduce) {
-
-    .about-image-card.reveal-soft {
-
-        transform: none;
-    }
-}
-
-@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
-
-    .sailing-scene.reveal-soft {
-
-        transform: translate(8%, 1.75rem);
+        animation: none;
     }
 }
