@@ -1331,11 +1331,16 @@ body.cosmic-active section::after {
 
     display: grid;
 
-    grid-template-columns: minmax(0, 440px);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+    gap: clamp(1.4rem, 3vw, 2rem);
 
     justify-content: center;
 
+    width: min(100%, 940px);
+
     margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .projects {
@@ -1533,6 +1538,14 @@ body.cosmic-active section::after {
     color: rgba(219, 234, 254, 0.95);
 
     transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+
+    .projects-grid {
+
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ========================================
