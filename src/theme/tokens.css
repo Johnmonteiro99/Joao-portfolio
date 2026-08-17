@@ -1,0 +1,103 @@
+/* Theme 1 (light) is the fully-designed system. Theme 2 (dark) is an
+   intentionally bare scaffold — same variable names, minimal values — so the
+   toggle has somewhere real to go without pretending it's a finished
+   experience. A future "secret" mode reuses this same attribute pattern. */
+
+:root[data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #efeee8;
+  --color-text: #1c1c1a;
+  --color-text-muted: #57564f;
+  --color-text-faint: #8a887f;
+  --color-accent: #747c3c;
+  --color-accent-strong: #5d6430;
+  --color-accent-soft: rgba(116, 124, 60, 0.12);
+  --color-accent-border: rgba(116, 124, 60, 0.35);
+  --color-border: rgba(28, 28, 26, 0.1);
+  --color-border-strong: rgba(28, 28, 26, 0.2);
+  --color-divider-haze: rgba(116, 124, 60, 0.018);
+  --color-portrait-plate: #eee7d8;
+  --color-service-tint-1: rgba(116, 124, 60, 0.05);
+  --color-service-tint-2: rgba(179, 129, 47, 0.05);
+  --color-service-tint-3: rgba(143, 164, 107, 0.06);
+  --color-service-tint-4: rgba(87, 86, 79, 0.045);
+  --color-service-tint-5: rgba(28, 28, 26, 0.03);
+  --color-service-tint-6: rgba(116, 124, 60, 0.035);
+  --color-amber: #b3812f;
+  --color-cyan-muted: #4f8a91;
+  --color-inverse-bg: #1c1c1a;
+  --color-inverse-text: #f7f6f2;
+  --color-inverse-border: rgba(247, 246, 242, 0.16);
+  --color-inverse-muted: rgba(247, 246, 242, 0.62);
+
+  /* Contact panel — dedicated tokens (not the generic --color-inverse-*
+     ones) so the sand treatment introduced for dark mode can't leak into
+     bg-inverse/ui-btn-dark/tech-corner elsewhere. Light mode just mirrors
+     the existing inverse values 1:1, so this is a no-op here. */
+  --contact-surface: #1c1c1a;
+  --contact-text: #f7f6f2;
+  --contact-text-muted: rgba(247, 246, 242, 0.62);
+  --contact-border: rgba(247, 246, 242, 0.16);
+  --contact-border-hover: rgba(247, 246, 242, 0.62);
+  --contact-input-surface: rgba(247, 246, 242, 0.06);
+  --contact-placeholder: rgba(247, 246, 242, 0.62);
+  --contact-accent: #747c3c;
+  --contact-accent-strong: #5d6430;
+  --contact-accent-text: #f7f6f2;
+  --contact-panel-shadow: none;
+
+  --font-display: "Inter Tight", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #0c0c0d;
+  --color-surface: #151617;
+  --color-surface-2: #191a1c;
+  --color-text: #ededec;
+  --color-text-muted: #9c9da3;
+  --color-text-faint: #6c6d73;
+  --color-accent: #8fa46b;
+  --color-accent-strong: #a3b982;
+  --color-accent-soft: rgba(143, 164, 107, 0.16);
+  --color-accent-border: rgba(143, 164, 107, 0.35);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+  --color-divider-haze: rgba(143, 164, 107, 0.028);
+  --color-amber: #c99a4d;
+  --color-cyan-muted: #6badb4;
+  --color-inverse-bg: #f7f6f2;
+  --color-inverse-text: #1c1c1a;
+  --color-inverse-border: rgba(28, 28, 26, 0.14);
+  --color-inverse-muted: rgba(28, 28, 26, 0.62);
+
+  /* Contact panel, dark mode: --color-surface-2 / --color-bg blended with a
+     touch of the sitewide accent hue (not a distinct brown/forest palette),
+     so the panel reads as this interface's own elevated surface rather than
+     a separately-themed card. Border reuses the same accent-tint pattern
+     already used for hover states elsewhere (--color-accent-border family).
+     Text reuses the sitewide dark text tokens directly for the same reason. */
+  --contact-surface: #20241d;
+  --contact-text: #ededec;
+  --contact-text-muted: #9c9da3;
+  --contact-border: rgba(143, 164, 107, 0.22);
+  --contact-border-hover: rgba(143, 164, 107, 0.4);
+  --contact-input-surface: #141513;
+  --contact-placeholder: #6c6d73;
+  --contact-accent: #8fa46b;
+  --contact-accent-strong: #a3b982;
+  --contact-accent-text: #141513;
+  --contact-panel-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.5);
+
+  --font-display: "Inter Tight", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
