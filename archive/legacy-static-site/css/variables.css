@@ -1,0 +1,30 @@
+/* ========================================
+   COLORS
+======================================== */
+
+:root {
+
+  /* BACKGROUNDS */
+  --bg-top: #030712;
+  --bg-mid: #071827;
+  --bg-bottom: #063743;
+  --moon-glow: rgba(174, 224, 230, 0.18);
+
+  /* TEXT */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  /* ACCENTS */
+  --accent-blue: #0f9f91;
+  --accent-light: #5eead4;
+
+  /* SURFACES */
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --border-color: rgba(255, 255, 255, 0.08);
+
+  /* GLOWS */
+  --button-glow:
+    0 0 8px rgba(20, 184, 166, 0.38),
+    0 0 20px rgba(45, 212, 191, 0.18);
+
+}

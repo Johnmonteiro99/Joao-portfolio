@@ -1,84 +1,66 @@
-# Joao Portfolio Website
+# Zayverse
 
-A cinematic and immersive personal portfolio website designed to showcase my projects, creativity, and passion for thoughtful digital experiences.
+João Monteiro's personal portfolio and digital workspace.
 
-This portfolio was built with a focus on:
-- atmospheric design
-- immersive storytelling
-- modern frontend development
-- clean user experience
-- emotional visual pacing
+## Purpose
 
-The overall theme takes inspiration from the night sky and the feeling of exploration — beginning in deep space and gradually transitioning toward Earth throughout the experience.
+Zayverse showcases software and front-end engineering work: web development, interface/UI design, selected projects, technical expertise, freelance/client services, résumé, and a project-inquiry contact flow.
 
----
+## Stack
 
-## ✨ Features
+- [React](https://react.dev/) 18
+- [Vite](https://vitejs.dev/) 5
+- [Tailwind CSS](https://tailwindcss.com/) 3
+- [Framer Motion](https://www.framer.com/motion/) 11
+- [lucide-react](https://lucide.dev/) and [react-icons](https://react-icons.github.io/react-icons/) for iconography
 
-- Responsive modern design
-- Cinematic dark-space aesthetic
-- Interactive About section with hidden flip-card message
-- Smooth scrolling navigation
-- Animated atmospheric visuals
-- Project showcase section
-- GitHub Pages deployment
-- Creative symbolic artwork integrated throughout the experience
+## Features
 
----
+- Responsive, modern portfolio design with light and dark themes
+- Cyber/data-rain entrance sequence that stabilizes into the homepage
+- Framer Motion interactions and section reveals throughout
+- Selected project showcase, with a full projects archive view
+- Interactive About section (multi-step personal story)
+- Interactive Expertise section (tabbed categories with diagrams)
+- Résumé viewing and download
+- Project-inquiry contact form
+- Mobile-responsive layout and `prefers-reduced-motion` support
 
-## 🛠 Built With
+## Selected Projects
 
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap
-- Git & GitHub
-- GitHub Pages
+- **Astral Veil** — [astralveil.world](https://astralveil.world)
+- **Pawsitive** — [johnmonteiro99.github.io/pawsitive](https://johnmonteiro99.github.io/pawsitive/)
 
----
+## Local Development
 
-## 🎨 Design Philosophy
+```bash
+npm install
+npm run dev
+```
 
-This website was designed to feel more like an experience than a traditional portfolio.
+Production build:
 
-Instead of focusing only on technical presentation, the goal was to create an environment that reflects:
-- curiosity
-- creativity
-- exploration
-- thoughtful interaction
-- immersive storytelling
+```bash
+npm run build
+```
 
-Every section was intentionally designed to feel calm, atmospheric, and human-centered.
+Preview a production build locally:
 
----
+```bash
+npm run preview
+```
 
-## 🚀 Live Website
+## Production
 
-https://www.zayverse.dev
+Live at [zayverse.dev](https://zayverse.dev).
 
----
+## Legacy Version
 
-## 📂 Project Structure
+The original portfolio — built with plain HTML, CSS, and vanilla JavaScript — has been preserved for historical reference and possible future design reuse. It is no longer the production version.
 
-```txt
-MY_PORTFOLIO/
-│
-├── assets/
-│   ├── fonts/
-│   ├── icons/
-│   └── images/
-│
-├── css/
-│   ├── variables.css
-│   └── styles.css
-│
-├── js/
-│   ├── main.js
-│   └── animations.js
-│
-├── projects/
-│
-├── blog/
-│
-├── index.html
-└── README.md
+- Archived copy: [`archive/legacy-static-site/`](archive/legacy-static-site/)
+- Permanent Git history reference: branch `legacy-static-site`, tag `legacy-static-v1`
+
+## Future Work
+
+Additional theme variants are in progress but not yet part of the production release.
