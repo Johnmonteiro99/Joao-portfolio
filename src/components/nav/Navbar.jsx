@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Github, Linkedin, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "../../theme/ThemeToggle";
 import MobileNav from "./MobileNav";
@@ -17,6 +17,12 @@ const NAV_LINKS = [
 // page scrolls, just which section is current and how to reach one.
 export default function Navbar({ activeId, scrollToChapter }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setMobileOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   return (
     <>
@@ -40,7 +46,7 @@ export default function Navbar({ activeId, scrollToChapter }) {
             ZAYVERSE<span className="wordmark-dot" aria-hidden="true" />
           </button>
 
-          <div className="hidden md:flex" style={{ alignItems: "center", gap: "2rem" }}>
+          <div className="navbar-desktop-links" style={{ alignItems: "center", gap: "2rem" }}>
             {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
@@ -59,7 +65,7 @@ export default function Navbar({ activeId, scrollToChapter }) {
               href={CONTACT.github}
               target="_blank"
               rel="noreferrer"
-              className="navbar-icon-btn hidden md:inline-flex"
+              className="navbar-icon-btn navbar-desktop-item"
               aria-label="GitHub"
             >
               <Github size={17} />
@@ -68,7 +74,7 @@ export default function Navbar({ activeId, scrollToChapter }) {
               href={CONTACT.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="navbar-icon-btn hidden md:inline-flex"
+              className="navbar-icon-btn navbar-desktop-item"
               aria-label="LinkedIn"
             >
               <Linkedin size={17} />
@@ -77,17 +83,18 @@ export default function Navbar({ activeId, scrollToChapter }) {
               href={RESUME.href}
               target={RESUME.available ? "_blank" : undefined}
               rel={RESUME.available ? "noopener noreferrer" : undefined}
-              className="ui-btn ui-btn-resume hidden md:inline-flex"
+              className="ui-btn ui-btn-resume navbar-desktop-item"
             >
               <span>Resume</span>
               <ArrowUpRight size={14} strokeWidth={2.25} />
             </a>
             <ThemeToggle />
             <button
-              className="md:hidden navbar-icon-btn"
+              className="navbar-menu-toggle navbar-icon-btn"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
               aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
               style={{ background: "none", border: "none", cursor: "pointer" }}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">

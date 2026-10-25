@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:projects": "node --test tests/projects.test.js",
+    "test:positioning": "node --test tests/positioning.test.js"
   },
   "dependencies": {
     "framer-motion": "^11.0.0",

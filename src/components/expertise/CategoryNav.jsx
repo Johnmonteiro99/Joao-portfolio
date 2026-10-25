@@ -1,52 +1,59 @@
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
-// Proper ARIA tabs: roving tabindex, Left/Right (and Home/End) move both
-// focus and selection, matching the standard tablist keyboard pattern.
+// Automatic activation with roving tabindex. Scroll only this tab strip so a
+// newly selected category stays visible without repositioning the document.
 export default function CategoryNav({ categories, activeId, onSelect }) {
   const btnRefs = useRef([]);
+  const stripRef = useRef(null);
+  useEffect(() => {
+    const strip = stripRef.current;
+    const button = btnRefs.current[categories.findIndex((category) => category.id === activeId)];
+    if (!strip || !button) return;
+    const reveal = () => {
+      const buttonLeft = button.offsetLeft;
+      if (buttonLeft < strip.scrollLeft) strip.scrollLeft = buttonLeft;
+      else if (buttonLeft + button.offsetWidth > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = buttonLeft + button.offsetWidth - strip.clientWidth;
+    };
+    reveal();
+    const observer = new ResizeObserver(reveal);
+    observer.observe(strip);
+    observer.observe(button);
+    return () => observer.disconnect();
+  }, [activeId, categories]);
 
-  const onKeyDown = (e, index) => {
-    const keys = { ArrowRight: 1, ArrowLeft: -1 };
-    if (e.key in keys) {
-      e.preventDefault();
-      const next = (index + keys[e.key] + categories.length) % categories.length;
-      onSelect(categories[next].id);
-      btnRefs.current[next]?.focus();
-    } else if (e.key === "Home") {
-      e.preventDefault();
-      onSelect(categories[0].id);
-      btnRefs.current[0]?.focus();
-    } else if (e.key === "End") {
-      e.preventDefault();
-      const last = categories.length - 1;
-      onSelect(categories[last].id);
-      btnRefs.current[last]?.focus();
-    }
+  const onKeyDown = (event, index) => {
+    let next;
+    if (event.key === "ArrowRight") next = (index + 1) % categories.length;
+    else if (event.key === "ArrowLeft") next = (index - 1 + categories.length) % categories.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = categories.length - 1;
+    else return;
+    event.preventDefault();
+    onSelect(categories[next].id);
+    btnRefs.current[next]?.focus({ preventScroll: true });
   };
 
   return (
-    <div className="expertise-tablist" role="tablist" aria-label="Expertise categories">
-      {categories.map((cat, i) => {
-        const isActive = cat.id === activeId;
-        return (
-          <button
-            key={cat.id}
-            ref={(el) => (btnRefs.current[i] = el)}
-            role="tab"
-            id={`expertise-tab-${cat.id}`}
-            aria-selected={isActive}
-            aria-controls="expertise-panel"
-            tabIndex={isActive ? 0 : -1}
-            onClick={() => onSelect(cat.id)}
-            onKeyDown={(e) => onKeyDown(e, i)}
-            className={`expertise-tab ${isActive ? "expertise-tab-active" : ""}`}
-          >
-            {cat.shortLabel}
-            {isActive && <motion.span layoutId="expertise-underline" className="expertise-underline" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
-          </button>
-        );
-      })}
+    <div ref={stripRef} className="expertise-tablist" role="tablist" aria-label="Expertise categories">
+      {categories.map((category, i) => (
+        <button
+          type="button"
+          key={category.id}
+          ref={(element) => { btnRefs.current[i] = element; }}
+          role="tab"
+          id={`expertise-tab-${category.id}`}
+          aria-selected={activeId === category.id}
+          aria-controls="expertise-panel"
+          tabIndex={activeId === category.id ? 0 : -1}
+          onFocus={() => onSelect(category.id)}
+          onClick={() => onSelect(category.id)}
+          onKeyDown={(event) => onKeyDown(event, i)}
+          className={`expertise-tab ${activeId === category.id ? "expertise-tab-active" : ""}`}
+        >
+          {category.shortLabel}
+          {activeId === category.id && <span className="expertise-underline" aria-hidden="true" />}
+        </button>
+      ))}
     </div>
   );
 }

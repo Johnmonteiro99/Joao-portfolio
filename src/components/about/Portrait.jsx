@@ -2,11 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { HERO, PORTRAIT_SRC } from "../../data/content";
 
-// No real photo of João exists in the repository (only AI-illustrated
-// artwork stylistically tied to the old dark/cosmic design). This tries the
-// expected path and falls back to a clean placeholder automatically — drop
-// a real photo at PORTRAIT_SRC (public/images/joao-portrait.jpg) and it
-// wires up with zero code changes.
+// Display the current portrait, with a placeholder if the image cannot load.
 export default function Portrait() {
   const [imgFailed, setImgFailed] = useState(false);
 

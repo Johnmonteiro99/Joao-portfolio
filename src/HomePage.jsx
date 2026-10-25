@@ -34,7 +34,7 @@ const DIVIDERS = [
 // static host 404ing on a route it was never configured to serve.
 export default function HomePage() {
   const [view, setView] = useState("home"); // 'home' | 'archive'
-  const { activeId, scrollToChapter } = useScrollSpy(CHAPTER_IDS);
+  const { activeId, scrollToChapter } = useScrollSpy(CHAPTER_IDS, view === "home");
 
   const goToArchive = () => {
     setView("archive");
@@ -48,8 +48,12 @@ export default function HomePage() {
   // ever one of these is in flight per action — each caller schedules its
   // own explicit target, rather than a generic view-change effect that
   // can't tell "Back to Home" apart from "jumped here via a nav link".
-  const settleScrollTo = (id) => {
-    const scroll = () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const settleScrollTo = (id, focusTarget) => {
+    const scroll = () => {
+      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+      document.getElementById(id)?.scrollIntoView({ behavior, block: "start" });
+      if (focusTarget) document.getElementById(focusTarget)?.focus({ preventScroll: true });
+    };
     requestAnimationFrame(() => requestAnimationFrame(scroll));
     setTimeout(scroll, 400);
   };
@@ -57,7 +61,7 @@ export default function HomePage() {
   // "Back to Home" always lands back on Selected Work.
   const goToHome = () => {
     setView("home");
-    settleScrollTo("work");
+    settleScrollTo("work", "view-all-projects");
   };
 
   // Navbar stays fully functional from the archive view too: a link click

@@ -9,8 +9,8 @@
   --color-surface-2: #efeee8;
   --color-text: #1c1c1a;
   --color-text-muted: #57564f;
-  --color-text-faint: #8a887f;
-  --color-accent: #747c3c;
+  --color-text-faint: #706f67;
+  --color-accent: #6c7436;
   --color-accent-strong: #5d6430;
   --color-accent-soft: rgba(116, 124, 60, 0.12);
   --color-accent-border: rgba(116, 124, 60, 0.35);
@@ -42,7 +42,8 @@
   --contact-border-hover: rgba(247, 246, 242, 0.62);
   --contact-input-surface: rgba(247, 246, 242, 0.06);
   --contact-placeholder: rgba(247, 246, 242, 0.62);
-  --contact-accent: #747c3c;
+  --contact-accent: #6c7436;
+  --contact-text-accent: #a4b675;
   --contact-accent-strong: #5d6430;
   --contact-accent-text: #f7f6f2;
   --contact-panel-shadow: none;
@@ -58,7 +59,7 @@
   --color-surface-2: #191a1c;
   --color-text: #ededec;
   --color-text-muted: #9c9da3;
-  --color-text-faint: #6c6d73;
+  --color-text-faint: #909198;
   --color-accent: #8fa46b;
   --color-accent-strong: #a3b982;
   --color-accent-soft: rgba(143, 164, 107, 0.16);
@@ -85,8 +86,9 @@
   --contact-border: rgba(143, 164, 107, 0.22);
   --contact-border-hover: rgba(143, 164, 107, 0.4);
   --contact-input-surface: #141513;
-  --contact-placeholder: #6c6d73;
+  --contact-placeholder: #909198;
   --contact-accent: #8fa46b;
+  --contact-text-accent: #8fa46b;
   --contact-accent-strong: #a3b982;
   --contact-accent-text: #141513;
   --contact-panel-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.5);

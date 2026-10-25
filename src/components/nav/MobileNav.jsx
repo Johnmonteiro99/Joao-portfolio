@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Github, Linkedin } from "lucide-react";
 import ThemeToggle from "../../theme/ThemeToggle";
@@ -5,17 +6,45 @@ import { CONTACT, RESUME } from "../../data/content";
 
 // Intentionally its own thing, not a squashed desktop nav: a full-screen
 // overlay with large, tap-friendly stacked links.
-export default function MobileNav({ open, onClose, links, activeId, onNavigate }) {
+function MenuDialog({ onClose, links, activeId, onNavigate }) {
+  const dialogRef = useRef(null);
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement;
+    dialog.showModal();
+    dialog.querySelector("button")?.focus();
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus({ preventScroll: true });
+    };
+  }, []);
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
+        <motion.dialog
+          ref={dialogRef}
+          id="mobile-navigation"
+          aria-label="Navigation menu"
+          onKeyDown={(event) => {
+            if (event.key !== "Tab") return;
+            const controls = [...dialogRef.current.querySelectorAll('button, a[href]')];
+            const first = controls[0];
+            const last = controls[controls.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault(); last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault(); first.focus();
+            }
+          }}
+          onCancel={(event) => { event.preventDefault(); onClose(); }}
           className="mobile-nav-panel"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
+
           <button
             onClick={onClose}
             aria-label="Close menu"
@@ -30,6 +59,7 @@ export default function MobileNav({ open, onClose, links, activeId, onNavigate }
               <motion.button
                 key={link.id}
                 onClick={() => onNavigate(link.id)}
+                aria-current={activeId === link.id ? "location" : undefined}
                 className={`mobile-nav-link ${activeId === link.id ? "mobile-nav-link-active" : ""}`}
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -63,8 +93,10 @@ export default function MobileNav({ open, onClose, links, activeId, onNavigate }
               <ThemeToggle />
             </div>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </motion.dialog>
   );
+}
+
+export default function MobileNav(props) {
+  return <AnimatePresence>{props.open && <MenuDialog {...props} />}</AnimatePresence>;
 }

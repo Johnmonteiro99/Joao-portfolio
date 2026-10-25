@@ -3,10 +3,11 @@ import { useCallback, useEffect, useState } from "react";
 // Active-section tracking for the normal-scrolling homepage — the page never
 // pins or snaps, so the navbar's current-section state comes from watching
 // which section is actually in view, not from any scroll-position math.
-export function useScrollSpy(sectionIds) {
+export function useScrollSpy(sectionIds, enabled = true) {
   const [activeId, setActiveId] = useState(sectionIds[0]);
 
   useEffect(() => {
+    if (!enabled) return;
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -21,10 +22,11 @@ export function useScrollSpy(sectionIds) {
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sectionIds.join(",")]);
+  }, [sectionIds.join(","), enabled]);
 
   const scrollToChapter = useCallback((id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    document.getElementById(id)?.scrollIntoView({ behavior, block: "start" });
   }, []);
 
   return { activeId, scrollToChapter };

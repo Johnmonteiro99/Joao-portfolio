@@ -12,159 +12,307 @@ export const CONTACT = {
 
 export const HERO = {
   eyebrow: "Creative Engineer",
+  role: "Full-Stack Software Engineer",
+  focus: "UI-Focused",
   name: "João Monteiro",
   handle: "aka Zay",
   supporting:
-    "I build digital experiences that blend code, design, and intention. Front-end engineer with a creative mind and a systems-thinking approach.",
+    "I build thoughtful digital experiences from interface to infrastructure. A full-stack engineer with a passion for intuitive design, maintainable systems, and turning ambitious ideas into working products.",
   ctaPrimary: { label: "View My Work", target: "work" },
-  ctaSecondary: { label: "Build Your Website", target: "contact" },
-  tools: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion", "Node.js", "Figma", "Git"],
+  ctaSecondary: { label: "Let’s Build Something", target: "contact" },
+  tools: ["React", "TypeScript", "Python", "FastAPI", "Node.js", "PostgreSQL", "Supabase", "Figma"],
 };
 
 // Single source of truth for project data — the homepage rail and the full
 // projects archive both render from this same array, nothing duplicated.
-// Only real, currently-live projects belong here; add future ones the same
-// shape (githubUrl/caseStudyUrl/featured/year can be added per-project when
-// they're real, never populated with placeholder values).
+// Featured selection and order live here; the archive always renders all items.
+// Actions are rendered only for real URLs. Never use placeholder links.
 export const PROJECTS = [
   {
-    id: "astral-veil",
+    id: "haven",
     number: "01",
+    name: "HAVEN · Listing Search",
+    classification: "Full-Stack · Personal Project",
+    description:
+      "A responsive property search application featuring advanced listing filters, budget and recency ranking, and server-side pagination. Built with React, TypeScript, and FastAPI using a modern architectural-editorial design.",
+    technologies: ["React", "TypeScript", "Vite", "Python", "FastAPI"],
+    featured: true,
+    featuredOrder: 1,
+    image: "/images/projects/haven-960.webp",
+    imageSrcSet: "/images/projects/haven-480.webp 480w, /images/projects/haven-960.webp 960w",
+    imageWidth: 960,
+    imageHeight: 617,
+    imageFit: "contain",
+    imagePosition: "50% 42%",
+    imageBackground: "#f5f4ef",
+    imageAlt: "HAVEN’s editorial homepage with property search filters and a coastal home hero",
+    liveUrl: "https://haven-listing-search.vercel.app/",
+    githubLabel: "Source Code",
+    githubUrl: "https://github.com/Johnmonteiro99/haven-listing-search",
+  },
+  {
+    id: "astral-veil",
+    slogan: "between fate and imagination",
+    developmentNote: "Expanding toward deeper Oracle, Lenormand, and meditation experiences.",
+    number: "02",
     name: "Astral Veil",
     classification: "Flagship · Personal",
     description:
-      "An immersive spiritual platform blending interactive tarot, education, storytelling, personalized experiences, and a scalable content system.",
+      "An immersive digital spiritual platform blending Tarot, storytelling, education, and reflection within an interconnected interactive world.",
     technologies: ["React", "TypeScript", "Supabase", "PostgreSQL", "SCSS"],
-    image: "/images/astral-veil-thumbnail.jpg",
-    imageAlt: "Astral Veil project preview",
+    featured: true,
+    featuredOrder: 2,
+    image: "/images/projects/astral-veil-960.webp",
+    imageSrcSet: "/images/projects/astral-veil-480.webp 480w, /images/projects/astral-veil-960.webp 960w",
+    imageWidth: 960,
+    imageHeight: 960,
+    imageFit: "cover",
+    imagePosition: "50% 50%",
+    imageBackground: "#171912",
+    imageAlt: "Astral Veil artwork with Tarot and Lenormand cards, candlelight, and the words between fate and imagination",
     liveUrl: "https://astralveil.world",
   },
   {
     id: "pawsitive",
-    number: "02",
+    number: "03",
     name: "Pawsitive",
     classification: "Client Project",
     description:
       "A warm, responsive pet-sitting website designed to build trust, clearly communicate services, and make it easy for local clients to connect.",
     technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-    image: "/images/pawsitive-thumbnail.jpg",
+    featured: true,
+    featuredOrder: 3,
+    image: "/images/projects/pawsitive-960.webp",
+    imageSrcSet: "/images/projects/pawsitive-480.webp 480w, /images/projects/pawsitive-960.webp 960w",
+    imageWidth: 960,
+    imageHeight: 540,
+    imageFit: "contain",
+    imagePosition: "50% 44%",
+    imageBackground: "#f7ecdd",
     imageAlt: "Pawsitive pet sitting website project preview",
     liveUrl: "https://johnmonteiro99.github.io/pawsitive/",
   },
 ];
 
-// One category is shown expanded at a time (Expertise Matrix). Each group's
-// `title` distinguishes tools/technologies from broader capabilities — never
-// merged into one undifferentiated list. `diagram` selects which small SVG
-// illustration ExpertiseDiagram.jsx renders for that category.
+// Return a new array so configuring homepage order never reorders the archive.
+export function getFeaturedProjects(projects = PROJECTS) {
+  return projects
+    .filter((project) => project.featured)
+    .sort((a, b) => (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER))
+    .slice(0, 7);
+}
+
+// One category is expanded at a time. Diagram keys select educational data;
+// projectIds resolve evidence against PROJECTS without copying project URLs.
 export const EXPERTISE = [
   {
-    id: "frontend",
-    number: "01",
-    label: "Front-End Engineering",
-    shortLabel: "Front-End",
-    description:
-      "Building responsive, component-driven interfaces with a focus on thoughtful interaction, performance, maintainability, and clean implementation.",
-    diagram: "component-tree",
-    groups: [
-      { title: "Technologies", items: ["React", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "HTML5 / CSS3", "SCSS"] },
-      { title: "Capabilities", items: ["Responsive UI", "Component Architecture", "Reusable UI Patterns"] },
-    ],
-  },
-  {
-    id: "uiux",
-    number: "02",
-    label: "UI/UX & Interaction",
-    shortLabel: "UI / UX",
-    description:
-      "Turning design ideas into responsive interfaces with polished interaction, thoughtful motion, and attention to how an experience feels as well as how it works.",
-    diagram: "interaction-path",
-    groups: [
-      { title: "Tools", items: ["Figma", "Framer Motion"] },
+    "id": "fullstack",
+    "number": "01",
+    "label": "Full-Stack Engineering",
+    "shortLabel": "Full-Stack",
+    "description": "Connecting interfaces, APIs, application logic, and data into complete, usable applications.",
+    "diagram": "application-flow",
+    "groups": [
       {
-        title: "Capabilities",
-        items: ["Interaction Design", "Micro-animations", "Design-to-Code Translation", "Responsive Experience Design", "Component-Driven UI"],
+        "title": "Technologies",
+        "items": [
+          "React",
+          "TypeScript",
+          "Python",
+          "FastAPI",
+          "Supabase",
+          "PostgreSQL"
+        ]
       },
-    ],
-  },
-  {
-    id: "design-systems",
-    number: "03",
-    label: "Design Systems",
-    shortLabel: "Design Systems",
-    description:
-      "Creating reusable visual and component systems that keep interfaces consistent, scalable, and easier to maintain as products grow.",
-    diagram: "token-network",
-    groups: [
-      { title: "Tools", items: ["Tailwind CSS", "Figma"] },
       {
-        title: "Capabilities",
-        items: ["Reusable Component Architecture", "Token-Based Theming", "Design Consistency at Scale", "Shared UI Patterns", "Theme Architecture"],
+        "title": "Capabilities",
+        "items": [
+          "API Integration",
+          "Application Logic",
+          "Data Interaction",
+          "End-to-End Workflows"
+        ]
+      }
+    ],
+    "projectIds": [
+      "haven"
+    ]
+  },
+  {
+    "id": "frontend",
+    "number": "02",
+    "label": "Front-End Engineering",
+    "shortLabel": "Front-End",
+    "description": "Building maintainable, component-driven interfaces with thoughtful state, responsive layouts, and accessible interactions.",
+    "diagram": "component-tree",
+    "groups": [
+      {
+        "title": "Technologies",
+        "items": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "HTML / CSS"
+        ]
       },
+      {
+        "title": "Capabilities",
+        "items": [
+          "Component Composition",
+          "State Management",
+          "Responsive UI",
+          "Accessibility"
+        ]
+      }
     ],
+    "projectIds": [
+      "haven",
+      "astral-veil"
+    ]
   },
   {
-    id: "backend",
-    number: "04",
-    label: "Back-End & Tools",
-    shortLabel: "Back-End & Tools",
-    description:
-      "Working across APIs, databases, cloud infrastructure, and development workflows when a project needs more than the interface layer.",
-    diagram: "architecture-flow",
-    groups: [
-      { title: "Back-End", items: ["Node.js", "Express", "REST APIs"] },
-      { title: "Data", items: ["Supabase", "PostgreSQL", "MongoDB"] },
-      { title: "Cloud / Infrastructure", items: ["AWS", "Docker"] },
-      { title: "Workflow", items: ["Git", "CI/CD", "Agile"] },
+    "id": "uiux",
+    "number": "03",
+    "label": "UI/UX & Interaction",
+    "shortLabel": "UI / UX",
+    "description": "Translating design ideas into clear, responsive experiences with considered feedback, motion, and visual consistency.",
+    "diagram": "interaction-flow",
+    "groups": [
+      {
+        "title": "Tools",
+        "items": [
+          "Figma",
+          "Framer Motion"
+        ]
+      },
+      {
+        "title": "Capabilities",
+        "items": [
+          "Interaction Design",
+          "Design-to-Code Translation",
+          "Micro-interactions",
+          "Design Tokens",
+          "Reusable Patterns"
+        ]
+      }
     ],
+    "projectIds": [
+      "haven",
+      "astral-veil"
+    ]
   },
   {
-    id: "performance",
-    number: "05",
-    label: "Performance & Accessibility",
-    shortLabel: "Performance",
-    description:
-      "Building interfaces that remain fast, usable, and considerate of different users, devices, input methods, and motion preferences.",
-    diagram: "diagnostic-rings",
-    groups: [
-      { title: "Accessibility", items: ["Semantic HTML", "Keyboard Support", "Screen Reader Considerations", "Reduced Motion Support", "Responsive Design"] },
-      { title: "Testing / Validation", items: ["Cypress", "Playwright", "Postman"] },
+    "id": "backend",
+    "number": "04",
+    "label": "Back-End & Systems",
+    "shortLabel": "Back-End",
+    "description": "Designing validated API workflows and server-side application logic, with clear boundaries between requests, processing, and data.",
+    "diagram": "request-flow",
+    "groups": [
+      {
+        "title": "Back-End",
+        "items": [
+          "Python / FastAPI",
+          "Node.js",
+          "REST APIs"
+        ]
+      },
+      {
+        "title": "Data & Logic",
+        "items": [
+          "Supabase / PostgreSQL",
+          "Request Validation",
+          "Business Logic",
+          "Data Access",
+          "Error Handling"
+        ]
+      }
     ],
+    "projectIds": [
+      "haven"
+    ]
   },
+  {
+    "id": "quality",
+    "number": "05",
+    "label": "Performance & Quality",
+    "shortLabel": "Quality",
+    "description": "Improving usability and reliability through performance checks, accessible interactions, automated tests, and maintainable implementation.",
+    "diagram": "quality-flow",
+    "groups": [
+      {
+        "title": "Testing Tools",
+        "items": [
+          "pytest",
+          "Vitest",
+          "React Testing Library",
+          "Playwright",
+          "axe"
+        ]
+      },
+      {
+        "title": "Practices",
+        "items": [
+          "Loading & Error States",
+          "Keyboard Checks",
+          "Reduced Motion",
+          "Regression Testing"
+        ]
+      }
+    ],
+    "projectIds": [
+      "haven"
+    ]
+  }
 ];
+
+// Evidence links use the existing project records, with real URLs only.
+export function getProjectEvidence(projectIds = [], projects = PROJECTS) {
+  return projectIds.flatMap((id) => {
+    const project = projects.find((item) => item.id === id);
+    if (!project) return [];
+    const href = project.liveUrl || project.githubUrl;
+    return href ? [{ ...project, href, action: project.liveUrl ? "Live project" : "View source" }] : [];
+  });
+}
 
 export const SERVICES = [
   {
-    title: "Web Development",
-    desc: "End-to-end build of fast, modern, production-ready websites and web apps.",
+    "title": "Full-Stack Development",
+    "desc": "Building complete web applications that connect responsive interfaces with APIs, application logic, and data.",
+    "icon": "application"
   },
   {
-    title: "Website Redesign",
-    desc: "Modernizing an existing site's design, structure, and codebase without losing what already works.",
+    "title": "Website & App Redesign",
+    "desc": "Refining existing websites and applications through clearer structure, thoughtful design, and maintainable code.",
+    "icon": "redesign"
   },
   {
-    title: "UI Implementation",
-    desc: "Turning designs (Figma or otherwise) into pixel-accurate, responsive, accessible interfaces.",
+    "title": "UI/UX Implementation",
+    "desc": "Translating designs into responsive, accessible interfaces with considered interactions and visual detail.",
+    "icon": "interaction"
   },
   {
-    title: "Design Systems",
-    desc: "Reusable component libraries and token-based theming so a product stays consistent as it grows.",
+    "title": "Design Systems",
+    "desc": "Creating reusable components, design tokens, and consistent themes that make interfaces easier to extend.",
+    "icon": "components"
   },
   {
-    title: "Performance, SEO & Accessibility",
-    desc: "Auditing and improving load speed, search visibility, and usability for every visitor.",
+    "title": "Performance & Accessibility",
+    "desc": "Improving loading, rendering, keyboard access, and usability through focused checks and practical fixes.",
+    "icon": "quality"
   },
   {
-    title: "Consulting & Mentoring",
-    desc: "Technical guidance for teams and individuals navigating front-end architecture decisions.",
-  },
+    "title": "Technical Collaboration",
+    "desc": "Working with teams on implementation, debugging, code review, and technical problem-solving.",
+    "icon": "collaboration"
+  }
 ];
 
 export const RESUME = {
-  available: true, // real file at public/resume.pdf (copied from Updated_resume_fid_2026.pdf)
+  available: true, // real file at public/resume.pdf (copied from Joao_Monteiro_Resume_10:26.pdf)
   href: "/resume.pdf",
-  // First-page preview generated from the real PDF (macOS QuickLook thumbnail,
-  // public/images/resume-preview.png) — not a fabricated mockup.
+  // First-page preview rendered from the current PDF.
   previewImage: "/images/resume-preview.png",
 };
 
@@ -189,7 +337,7 @@ export const ABOUT = {
   ],
 };
 
-// Real headshot, added to assets/joao-profile-pic.jpeg and copied here.
+// Current headshot from assets/Joao-profile-pic.jpeg, copied to public/images.
 // Portrait.jsx still falls back to a placeholder automatically via onError
 // if this path is ever missing (e.g. before this photo was added).
 export const PORTRAIT_SRC = "/images/joao-profile-pic.jpeg";

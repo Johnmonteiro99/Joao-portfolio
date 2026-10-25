@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { SiReact, SiTypescript, SiJavascript, SiTailwindcss, SiFramer, SiNodedotjs, SiFigma, SiGit } from "react-icons/si";
+import { SiReact, SiTypescript, SiPython, SiFastapi, SiNodedotjs, SiPostgresql, SiSupabase, SiFigma } from "react-icons/si";
 import Button from "../components/ui/Button";
 import TechIcon from "../components/ui/TechIcon";
 import { HERO } from "../data/content";
@@ -15,16 +15,17 @@ const HERO_IMAGE = {
 const TOOL_ICONS = {
   React: SiReact,
   TypeScript: SiTypescript,
-  JavaScript: SiJavascript,
-  "Tailwind CSS": SiTailwindcss,
-  "Framer Motion": SiFramer,
+  Python: SiPython,
+  FastAPI: SiFastapi,
   "Node.js": SiNodedotjs,
+  PostgreSQL: SiPostgresql,
+  Supabase: SiSupabase,
   Figma: SiFigma,
-  Git: SiGit,
 };
 
 function scrollTo(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  document.getElementById(id)?.scrollIntoView({ behavior, block: "start" });
 }
 
 const [akaWord, ...zayWords] = HERO.handle.split(" ");
@@ -65,11 +66,12 @@ export default function HeroChapter() {
             <span className="text-accent">{akaWord}</span> <span className="text-primary">{zayWords.join(" ")}</span>
             <span className="text-accent">_</span>
           </h1>
-          <p className="text-muted font-body" style={{ marginTop: "1.4rem", fontSize: "1.05rem", lineHeight: 1.65, maxWidth: 460 }}>
+          <p className="hero-professional-title">{HERO.role} <span>· {HERO.focus}</span></p>
+          <p className="text-muted font-body hero-supporting">
             {HERO.supporting}
           </p>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.85rem", marginTop: "2rem" }}>
+          <div className="hero-actions">
             <Button variant="primary" onClick={() => scrollTo(HERO.ctaPrimary.target)}>
               {HERO.ctaPrimary.label}
             </Button>
@@ -78,11 +80,11 @@ export default function HeroChapter() {
             </Button>
           </div>
 
-          <div style={{ marginTop: "3rem" }}>
+          <div className="hero-technologies">
             <div className="section-label" style={{ marginBottom: "0.75rem" }}>
               Tools &amp; Technologies
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+            <div className="hero-tool-list">
               {HERO.tools.map((tool) => (
                 <TechIcon key={tool} icon={TOOL_ICONS[tool]} label={tool} />
               ))}

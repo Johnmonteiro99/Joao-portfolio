@@ -1,36 +1,27 @@
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useId, useRef, useState } from "react";
 
-// Informational, not actionable — focusable via tabIndex so the tooltip is
-// reachable by keyboard, but not a <button> (nothing happens on activation).
+// The button reveals a technology label for touch and keyboard users too.
+// It has no navigation side effect; Escape or leaving focus dismisses it.
 export default function TechIcon({ icon: Icon, label }) {
   const [show, setShow] = useState(false);
-
+  const buttonRef = useRef(null);
+  const tooltipId = useId();
   return (
-    <div
+    <button
+      ref={buttonRef}
+      type="button"
       className="hero-tools-icon tech-tooltip-wrap"
-      tabIndex={0}
-      aria-label={label}
+      aria-label={`Technology: ${label}`}
+      aria-describedby={show ? tooltipId : undefined}
       onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
+      onMouseLeave={() => { if (document.activeElement !== buttonRef.current) setShow(false); }}
       onFocus={() => setShow(true)}
       onBlur={() => setShow(false)}
+      onClick={() => setShow(true)}
+      onKeyDown={(event) => { if (event.key === "Escape") setShow(false); }}
     >
       <Icon size={16} aria-hidden="true" />
-      <AnimatePresence>
-        {show && (
-          <motion.span
-            className="tech-tooltip"
-            role="tooltip"
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.15 }}
-          >
-            {label}
-          </motion.span>
-        )}
-      </AnimatePresence>
-    </div>
+      {show && <span id={tooltipId} role="tooltip" className="tech-tooltip">{label}</span>}
+    </button>
   );
 }
